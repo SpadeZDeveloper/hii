@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('startBtn');
     const overlay = document.getElementById('overlay');
 
-    // Dùng cả click và touch để nút bấm nhạy hơn trên đth
     const startAction = () => {
         overlay.style.opacity = '0';
         setTimeout(() => overlay.style.display = 'none', 500);
@@ -49,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const stage = document.getElementById('mainStage');
         const lyricZone = document.querySelector('.lyric-zone');
 
+        // Force hiển thị các thành phần chính
         if(sky) sky.style.setProperty('display', 'block', 'important');
         if(stage) stage.style.setProperty('display', 'flex', 'important');
         if(lyricZone) lyricZone.style.setProperty('display', 'block', 'important');
@@ -122,7 +122,6 @@ function openTheLetter() {
         env.classList.add('fly-in');
     }, 100);
 
-    // Hàm thực hiện mở thư
     const handleOpen = () => {
         wishZone.classList.add('terminal-mode');
         if (music2) {
@@ -134,7 +133,6 @@ function openTheLetter() {
         typeFinalWish();
     };
 
-    // Gán cả sự kiện click và touchstart cho mobile
     env.addEventListener('click', handleOpen);
 }
 
@@ -193,7 +191,11 @@ function typeFinalWish() {
         for (let line of codeLines) {
             await typeHtmlLine(line);
             const body = document.querySelector('.terminal-body');
-            if (body) body.scrollTop = body.scrollHeight;
+            if (body) {
+                body.scrollTop = body.scrollHeight;
+                // Fix cho một số trình duyệt di động không cuộn mượt
+                body.scroll({ top: body.scrollHeight, behavior: 'smooth' });
+            }
         }
         runBtn.style.display = 'block';
     }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Storytelling - Pink Flower Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="overlay">
+        <button id="startBtn">Nhấn để bắt đầu ❤️</button>
+    </div>
+
+    <audio id="myMusic" src="https://files.catbox.moe/31ipgd.mp3" preload="auto"></audio>
+
+<audio id="wishMusic" src="https://files.catbox.moe/yfahc9.mp3" preload="auto"></audio>
+
+    <div class="main-wrapper" id="masterContainer">
+        <div class="sky night" id="sky">
+            <div class="stars"></div>
+            <div class="moon-c" id="moon"></div>
+            <div class="sun" id="sun"></div>
+        </div>
+
+        <div class="lyric-zone">
+            <div id="textDisplay" class="anime-font-style"></div>
+        </div>
+
+        <div class="stage" id="mainStage">
+            <div class="house-anime">
+                <div class="roof"></div>
+                <div class="wall">
+                    <div class="window-l"></div>
+                    <div class="window-r"></div>
+                    <div class="door"></div>
+                </div>
+                <div class="characters" id="couple">
+                    <img src="https://img.upanh.moe/hJR2T7hm/anime-png.png.jpg" alt="Couple">
+                </div>
+            </div>
+        </div>
+
+        <div class="final-gallery" id="gallery">
+            <div class="flower-deco f1">🌸</div><div class="flower-deco f2">🌻</div>
+            <div class="flower-deco f3">🌷</div><div class="flower-deco f4">🌹</div>
+            <div class="flower-deco f5">🌼</div><div class="flower-deco f6">🌺</div>
+            <div class="flower-deco f7">🌸</div><div class="flower-deco f8">🌻</div>
+            
+            <div class="heart-deco h1">❤️</div><div class="heart-deco h2">💖</div>
+            <div class="heart-deco h3">💗</div><div class="heart-deco h4">💓</div>
+            
+            <div class="bow-decoration"></div>
+
+            <img src="https://img.upanh.moe/4gtQ2BTj/e865352047d08578b2f5b0609f66bcaa-jpg.jpg" class="gallery-img">
+            <img src="https://img.upanh.moe/b5K4zwGD/d1052d26ad562ad15b29cd68a29b05dd-jpg.jpg" class="gallery-img">
+            <img src="https://img.upanh.moe/M5trvJmc/e873469eaf6c7329794cc4d073d6a674-jpg.jpg" class="gallery-img">
+            <img src="https://img.upanh.moe/b5YXj7TB/74f0330f444f8f297d8d7c2f803ddebc-jpg.jpg" class="gallery-img">
+        </div>
+
+        <div id="fastLoader" class="curtain-loader">
+            <div id="loadText" class="neon-load"></div>
+        </div>
+
+        <div id="wishZone" class="wish-container">
+            <div id="envelope" class="envelope">
+                <div class="heart-seal">MỞ THƯ ❤️</div>
+            </div>
+
+            <div id="paper" class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="terminal-title">love_programming.exe</div>
+                </div>
+                
+                <div class="terminal-body">
+                    <div id="codeContainer">
+                        <div id="codeDisplay" class="code-text"></div>
+                        <button id="runBtn" class="compile-btn" style="display: none;">Tiếp đi ạ</button>
+                    </div>
+
+                    <div id="finalWishScreen" class="result-hidden">
+                        <h2 class="morning-title">Thích Như vai</h2>
+                        <p class="morning-wish">Chúc công chúa của tớ có một ngày đi làm thật năng động và suôn sẻ. Mau về nhắn tin với tớ nhé, miss 💖</p>
+                        
+                        <div class="terminal-divider"></div>
+
+                        <div class="gif-zone">
+                            <img src="https://i.pinimg.com/originals/0c/5e/aa/0c5eaa4715b42f1561c390f5f841c48a.gif" alt="Love Gif">
+                        </div>
+                        <p class="footer-sign">Yêu <3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

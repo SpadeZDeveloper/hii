@@ -1,0 +1,309 @@
+/* --- ĐỒNG BỘ TOÀN BỘ FONT ITIM & CẬP NHẬT MÀU SẮC --- */
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+:root {
+    --night-color: #020111;
+    --day-color: #5d9cec;
+    --house-roof: #d63031;
+    --house-wall: #ffffff;
+    --romantic-pink: #ffcccc; 
+    --accent-pink: #ff8fa3;   
+}
+
+body { 
+    margin: 0; padding: 0;
+    overflow: hidden; 
+    background: #000; 
+    font-family: 'Itim', cursive;
+    width: 100vw; height: 100vh;
+}
+
+/* 1. THAY ĐỔI: CHÈN GIF NỀN CHO MÀN HÌNH BẮT ĐẦU */
+#overlay {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Link GIF mây pixel tím cực ngầu */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExenNicTkxbjB4NmFxZjM0MmQ1d2h1dW8xeDJ5eDhiaTc5d2FweW90eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gH1jGsCnQBiFHWMFzh/giphy.gif');
+    background-size: cover;
+    background-position: center;
+    z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 0.4s ease;
+}
+
+#startBtn {
+    padding: 15px 40px; 
+    font-family: 'Itim', cursive;
+    font-size: 1.8rem; color: #fff; background: rgba(0, 0, 0, 0.5); /* Thêm chút nền tối cho nút */
+    border: 2px solid var(--romantic-pink); border-radius: 50px;
+    cursor: pointer; box-shadow: 0 0 15px var(--romantic-pink), inset 0 0 10px var(--romantic-pink);
+    text-shadow: 0 0 5px #fff; transition: 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+#startBtn:hover { transform: scale(1.1); background: var(--romantic-pink); color: #000; }
+
+/* ... Các phần Sky, Sun, Moon, Stage, House giữ nguyên cấu trúc cũ ... */
+
+/* ĐOẠN FIX TRIỆT ĐỂ: Khóa hiển thị bằng !important để nhà không bao giờ hiện trước khi nhấn nút */
+.sky, .stage, .lyric-zone, .anime-boy {
+    display: none !important;
+}
+
+.sky { position: absolute; width: 100%; height: 100%; transition: 1.5s ease-in-out; }
+.sky.night { background: var(--night-color); }
+.sky.day { background: var(--day-color); }
+
+.moon-c {
+    position: absolute; top: 60px; right: 100px;
+    width: 70px; height: 70px; border-radius: 50%;
+    box-shadow: -15px 10px 0 5px #f5f6fa; transform: rotate(-15deg);
+}
+
+.sun {
+    position: absolute; bottom: -120px; left: 15%;
+    width: 90px; height: 90px; background: radial-gradient(#fff200, #ff9f43);
+    border-radius: 50%; box-shadow: 0 0 50px #ff9f43;
+    transition: 1s cubic-bezier(0.17, 0.67, 0.83, 0.67); 
+}
+.sun.rise { transform: translateY(-600px); }
+
+.lyric-zone { position: absolute; top: 25%; left: 10%; z-index: 100; }
+.anime-font-style {
+    font-family: 'Itim', cursive;
+    font-size: 2.8rem; color: #fff;
+    text-shadow: 0 0 10px var(--romantic-pink), 0 0 20px var(--romantic-pink);
+    opacity: 0;
+}
+
+.stage { position: absolute; bottom: 8%; width: 100%; display: flex; justify-content: center; }
+.house-anime { position: relative; width: 420px; height: 260px; }
+.roof { 
+    width: 420px; height: 160px; background: var(--house-roof); 
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    position: absolute; top: -160px; left: 0; z-index: 10; 
+}
+.wall { 
+    width: 420px; height: 240px; background: var(--house-wall); 
+    border: 4px solid #2d3436; position: relative; z-index: 10; box-sizing: border-box;
+}
+.window-l, .window-r { width: 80px; height: 80px; background: #2ecc71; border: 4px solid #2d3436; position: absolute; top: 45px; }
+.window-l { left: 45px; } .window-r { right: 45px; }
+.door { width: 90px; height: 130px; background: #ae1f1f; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border: 4px solid #2d3436; }
+
+.characters { position: absolute; top: -20px; right: -2%; width: 180px; opacity: 0; z-index: 5; transition: all 1s ease-out; }
+.characters img { width: 100%; display: block; object-fit: contain; }
+.characters.show { opacity: 1; transform: translateY(-165px) rotate(15deg); }
+
+.final-gallery { 
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+    background: linear-gradient(135deg, #ffd1dc 0%, #ffafbd 100%); 
+    z-index: 999; display: none; justify-content: center; align-items: center; overflow: hidden;
+}
+
+.flower-deco, .heart-deco {
+    position: absolute; z-index: 30;
+    filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 12px rgba(255,255,255,0.6));
+    animation: floatAnim 4s infinite ease-in-out;
+}
+.flower-deco { font-size: 2.8rem; }
+.heart-deco { font-size: 2.2rem; }
+
+.f1 { top: 6%; left: 6%; animation-delay: 0s; }
+.f2 { top: 6%; right: 6%; animation-delay: 1s; }
+.f3 { bottom: 6%; left: 6%; animation-delay: 2s; }
+.f4 { bottom: 6%; right: 6%; animation-delay: 0.5s; }
+.f5 { top: 45%; left: 2%; font-size: 2.2rem; }
+.f6 { top: 45%; right: 2%; font-size: 2.2rem; }
+.f7 { bottom: 25%; left: 12%; font-size: 2rem; opacity: 0.8; }
+.f8 { bottom: 25%; right: 12%; font-size: 2rem; opacity: 0.8; }
+
+.h1 { top: 15%; left: 4%; animation-delay: 0.2s; }
+.h2 { top: 15%; right: 4%; animation-delay: 1.2s; }
+.h3 { bottom: 15%; left: 4%; animation-delay: 2.2s; }
+.h4 { bottom: 15%; right: 4%; animation-delay: 0.7s; }
+
+@keyframes floatAnim {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-15px) rotate(15deg) scale(1.1); }
+}
+
+.gallery-img { 
+    position: absolute; height: 85%; width: auto; max-width: 90%;
+    object-fit: contain; object-position: center; 
+    opacity: 0; 
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    border: 10px solid #fff; 
+    border-radius: 10px; 
+    box-shadow: 0 10px 50px rgba(255, 143, 163, 0.8); 
+    background: #fff; z-index: 10; 
+    filter: blur(10px); 
+}
+
+.gallery-img.active { 
+    opacity: 1 !important; 
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+    animation: capcutTransition 0.6s ease-out, softFloat 3s infinite ease-in-out;
+}
+
+@keyframes capcutTransition {
+    0% { filter: blur(20px) brightness(2); transform: scale(1.1); }
+    10% { filter: blur(10px) brightness(1.5); }
+    100% { filter: blur(0) brightness(1); transform: scale(1); }
+}
+
+@keyframes softFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+.curtain-loader {
+    position: fixed; top: -100%; left: 0; width: 100%; height: 100%;
+    background: #111; z-index: 2000; display: flex; 
+    justify-content: center; align-items: center;
+    transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+}
+.curtain-loader.drop-active { transform: translateY(100%); }
+
+.neon-load {
+    font-family: 'Itim', cursive;
+    font-size: 2.5rem; color: #fff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+}
+
+/* 2. THAY ĐỔI: CHÈN GIF NỀN CHO KHU VỰC MỞ THƯ (WISH CONTAINER) */
+.wish-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    /* Link GIF pixel mây màu tím hồng mộng mơ */
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3NhMXJ3b2t4MnRidDR1YTRiYTN1ZnMzMDlkY2pqOWlndzl3MDhzNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6705G9I9sUcNCaJF10/giphy.gif');
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+    display: none; justify-content: center; align-items: center; z-index: 1500;
+    transition: background-image 0.6s ease-in-out;
+}
+
+.wish-container.terminal-mode {
+    background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHNycDZkZTlpNnZkZ3drZ3JiejFvd2M2cm14ZTRyMmZsaHU0NGF3eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3V0iU0s9WkauP5N6/giphy.gif') !important;
+}
+
+.envelope {
+    width: 280px; height: 180px; background: #fff; border: 4px solid #ff4d6d;
+    position: relative; cursor: pointer; transform: translateY(100vh);
+    transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex; justify-content: center; align-items: center; border-radius: 10px; z-index: 10;
+}
+.fly-in { transform: translateY(0) rotate(-4deg); }
+
+.heart-seal { 
+    background: #ff4d6d; 
+    color: #fff; 
+    padding: 12px 25px; 
+    border-radius: 30px; 
+    font-weight: bold; 
+    font-family: 'Itim', cursive;
+    font-size: 1.8rem;
+    text-shadow: 0 0 10px #fff, 0 0 20px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.8); 
+    transition: 0.3s;
+}
+.heart-seal:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 77, 109, 1);
+}
+
+.terminal-window {
+    width: 90%; max-width: 550px; 
+    background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(5px); 
+    border: 2px solid #2ecc71; border-radius: 10px;
+    box-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
+    display: none; flex-direction: column; overflow: hidden;
+}
+.paper-open { display: flex !important; animation: scaleUp 0.5s forwards; }
+
+.terminal-header {
+    background: #1a1a1a; padding: 10px 15px;
+    display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333;
+}
+.terminal-dots { display: flex; gap: 6px; }
+.dot { width: 11px; height: 11px; border-radius: 50%; }
+.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+.terminal-title { color: #888; font-size: 0.8rem; font-family: monospace; }
+
+.terminal-body {
+    padding: 25px; color: #2ecc71; font-family: 'Courier New', monospace;
+    text-align: left; min-height: 320px;
+}
+.code-text { line-height: 1.6; white-space: pre-wrap; font-size: 0.95rem; margin-bottom: 20px; font-family: 'Courier New', monospace; }
+
+.compile-btn {
+    background: #27c93f; color: #fff; border: none; padding: 10px 25px; border-radius: 5px; 
+    font-weight: bold; cursor: pointer; box-shadow: 0 0 10px rgba(39, 201, 63, 0.5);
+    transition: 0.3s; font-family: sans-serif; float: right;
+}
+.compile-btn:hover { transform: scale(1.05); background: #22ae37; }
+
+.result-hidden { display: none; opacity: 0; text-align: center; }
+.result-show { display: block !important; animation: fadeInResult 0.8s forwards; }
+
+.morning-title { 
+    font-family: 'Itim', cursive; 
+    color: #ffffff; 
+    font-size: 2.4rem; 
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff4d6d; 
+}
+
+.morning-wish { 
+    font-family: 'Itim', cursive;
+    font-size: 1.9rem; 
+    color: #fff; 
+    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px #2ecc71; 
+}
+
+.terminal-divider { height: 1px; background: rgba(46, 204, 113, 0.3); margin: 20px 0; }
+.gif-zone img { width: 130px; margin-top: 10px; }
+.footer-sign { font-size: 0.75rem; color: #ffffff; margin-top: 15px; font-style: italic; opacity: 0.8; }
+
+@keyframes scaleUp { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes fadeInResult { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 768px) {
+    .house-anime { transform: scale(0.7); }
+    .anime-font-style { font-size: 1.8rem; }
+    .gallery-img { width: 95%; height: auto; max-height: 90%; }
+    .morning-wish { font-size: 1.4rem; }
+}
+
+@keyframes flyBang {
+    0% { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
+    60% { transform: translateY(-10%) scale(1.1) rotate(10deg); opacity: 1; }
+    100% { transform: translateY(0) rotate(-4deg) scale(1); }
+}
+
+.fly-in { 
+    animation: flyBang 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important; 
+}
+
+.anime-boy {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    height: 75vh;
+    z-index: 5;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.8s ease-out;
+    pointer-events: none;
+}
+
+.anime-boy.show {
+    opacity: 1;
+    transform: translateX(0);
+    display: block;
+}
+
+.anime-boy img {
+    height: 100%;
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.4));
+}

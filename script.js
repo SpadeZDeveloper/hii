@@ -1,7 +1,7 @@
 /* --- TOÀN BỘ CODE JAVASCRIPT ĐÃ TỐI ƯU CHO DI ĐỘNG --- */
 
 const textElem = document.getElementById('textDisplay');
-const fullLyric = "Nếu đêm khuya\nnhiều lắng lo..."; 
+const fullLyric = "Nếu đêm khuya\nnhiều đắn đo..."; 
 
 // 1. Hiệu ứng đánh chữ lời nhạc (GIỮ NGUYÊN)
 function typeLyrics(text, i) {

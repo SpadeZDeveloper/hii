@@ -140,7 +140,7 @@ function openTheLetter() {
 function typeFinalWish() {
     const codeLines = [
         '<span style="color: #2ecc71;">//===== I Miss You =====</span>',
-        '<span style="color: #fff;">I = </span><span style="color: #ff79c6;">new</span><span style="color: #fff;"> I(</span><span style="color: #f1fa8c;">"Spade Z"</span><span style="color: #fff;">);</span>',
+        '<span style="color: #fff;">I = </span><span style="color: #ff79c6;">new</span><span style="color: #fff;"> I(</span><span style="color: #f1fa8c;">"I love u"</span><span style="color: #fff;">);</span>',
         '<span style="color: #fff;">She = </span><span style="color: #ff79c6;">new</span><span style="color: #fff;"> She(</span><span style="color: #f1fa8c;">"Như (ẻm dthw vai)"</span><span style="color: #fff;">);</span>',
         '<span style="color: #2ecc71;">// Lần đầu tiên tớ biết đến cậu</span>',
         '<span style="color: #fff;">i.firstTimeKnowing(u);</span>',
